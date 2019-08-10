@@ -11,7 +11,7 @@ import java.util.List;
  * @author Sneha.G
  */
 @RestController
-@RequestMapping("{spring.data.rest.basePath}/detail")
+@RequestMapping("/detail")
 @CrossOrigin(origins = "http://localhost:4200")
 public class QueueDetailController {
 

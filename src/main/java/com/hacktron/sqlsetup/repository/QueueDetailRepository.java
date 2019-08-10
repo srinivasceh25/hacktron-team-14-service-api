@@ -14,11 +14,9 @@ import java.util.List;
 @Repository("queueDetailRepository")
 public class QueueDetailRepository {
 
-    final String DEL_QUERY = "delete from NetworkSpecs where id=:id";
-    final String GET_QUERY = "from QueueDetail queueDetail where queueDetail.queue.id=:id";
-    final String UPDATE_QUERY = "update NetworkSpecs networkSpecs set networkSpecs.name=:name where networkSpecs.id=:id";
-    final String GET_ALL_QUERY = "from NetworkSpecs";
-
+    final String DEL_QUERY = "delete from QueueDetail where id=:id";
+    final String GET_QUERY = "from QueueDetail queueDetail where queueDetail.queueId=:id";
+    final String DEL_ALL_QUERY = "delete from QueueDetail where queueId=:id";
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -26,17 +24,20 @@ public class QueueDetailRepository {
         return (List<QueueDetail>) entityManager.createQuery(GET_QUERY).setParameter("id",id).getResultList();
     }
 
-    /*public void add(QueueDetail queueDetail,Long queueId) {
+    public boolean add(QueueDetail queueDetail) {
         entityManager.merge(queueDetail);
+        return true;
     }
 
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         entityManager.createQuery(DEL_QUERY).setParameter("id",id).executeUpdate();
+        return true;
     }
 
-    public void deleteAll(String name, NetworkSpecs networkSpecs) {
-        //merge();
-    }*/
+    public boolean deleteAll(Long queueId) {
+        entityManager.createQuery(DEL_ALL_QUERY).setParameter("id",queueId).executeUpdate();
+        return true;
+    }
 
 }
 

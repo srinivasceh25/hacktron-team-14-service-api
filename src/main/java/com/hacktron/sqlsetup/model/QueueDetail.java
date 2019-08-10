@@ -17,13 +17,10 @@ public class QueueDetail implements Serializable {
     @SequenceGenerator(name = "detail_seq", initialValue = 1, sequenceName = "DETAIL_SEQ")
     private Long id;
 
-    @JoinColumn(referencedColumnName = "id")
-    private Queue queue;
-
     @Column
     private String queueId;
     @Column
-    private Object message;
+    private String message;
     @Column
     private String lastUpdatedBy;
     @Column
@@ -36,11 +33,11 @@ public class QueueDetail implements Serializable {
         this.id = id;
     }
 
-    public void setQueueId(String queueId) {
-        this.queueId = queueId;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMessage(Object message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

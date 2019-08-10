@@ -22,15 +22,15 @@ public class QueueDetailDomainService {
         return detail;
     }
 
-   /* public void add(NetworkSpecs networkSpecs) {
-        networkProviderRepository.save(networkSpecs);
+    public boolean add(QueueDetail queueDetail) {
+        return queueDetailRepository.add(queueDetail);
     }
 
-    public void delete(Long id) {
-        networkProviderRepository.delete(id);
+    public boolean delete(Long id) {
+        return queueDetailRepository.delete(id);
     }
 
-    public void deleteAll(String name, NetworkSpecs networkSpecs) {
-        networkProviderRepository.update(name,networkSpecs);
-    }*/
+    public boolean deleteAll(Long id) {
+        return queueDetailRepository.deleteAll(id);
+    }
 }
