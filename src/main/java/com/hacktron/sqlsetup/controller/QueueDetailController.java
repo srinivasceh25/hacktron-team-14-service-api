@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/detail")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class MessageQueueController {
+public class QueueDetailController {
 
     @Autowired
     QueueDetailDomainService queueDetailDomainService;

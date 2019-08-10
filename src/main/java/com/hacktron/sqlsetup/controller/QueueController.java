@@ -22,23 +22,23 @@ public class QueueController {
     QueueRepository queueRepository;
 
     @GetMapping("/queues")
-    public List<Queue> getAllQueues() {
+    public List<Queue> getAllNotes() {
         return queueRepository.findAll();
     }
 
     @PostMapping("/queues")
-    public Queue createQueue(@Valid @RequestBody Queue note) {
+    public Queue createNote(@Valid @RequestBody Queue note) {
         return queueRepository.save(note);
     }
 
     @GetMapping("/queues/{id}")
-    public Queue getQueueById(@PathVariable(value = "id") Long queueId) {
+    public Queue getNoteById(@PathVariable(value = "id") Long queueId) {
         return queueRepository.findById(queueId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
     }
 
     @PutMapping("/queues/{id}")
-    public Queue updateQueue(@PathVariable(value = "id") Long noteId,
+    public Queue updateNote(@PathVariable(value = "id") Long noteId,
                             @Valid @RequestBody Queue noteDetails) {
 
         Queue queueInfo = queueRepository.findById(noteId)
