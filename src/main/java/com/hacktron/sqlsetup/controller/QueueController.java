@@ -18,42 +18,42 @@ public class QueueController {
     @Autowired
     QueueRepository queueRepository;
 
-    @GetMapping("/notes")
+    @GetMapping("/queues")
     public List<Queue> getAllNotes() {
         return queueRepository.findAll();
     }
 
-    @PostMapping("/notes")
+    @PostMapping("/queues")
     public Queue createNote(@Valid @RequestBody Queue note) {
         return queueRepository.save(note);
     }
 
-    @GetMapping("/notes/{id}")
-    public Queue getNoteById(@PathVariable(value = "id") Long noteId) {
-        return queueRepository.findById(noteId)
-                .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", noteId));
+    @GetMapping("/queues/{id}")
+    public Queue getNoteById(@PathVariable(value = "id") Long queueId) {
+        return queueRepository.findById(queueId)
+                .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
     }
 
     @PutMapping("/notes/{id}")
     public Queue updateNote(@PathVariable(value = "id") Long noteId,
                             @Valid @RequestBody Queue noteDetails) {
 
-        Queue note = queueRepository.findById(noteId)
+        Queue queueInfo = queueRepository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", noteId));
 
-        note.setTitle(noteDetails.getTitle());
-        note.setContent(noteDetails.getContent());
+        queueInfo.setTitle(noteDetails.getTitle());
+        queueInfo.setContent(noteDetails.getContent());
 
-        Queue updatedNote = queueRepository.save(note);
+        Queue updatedNote = queueRepository.save(queueInfo);
         return updatedNote;
     }
 
     @DeleteMapping("/notes/{id}")
-    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long noteId) {
-        Queue note = queueRepository.findById(noteId)
-                .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", noteId));
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long queueId) {
+        Queue queueInfo = queueRepository.findById(queueId)
+                .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
 
-        queueRepository.delete(note);
+        queueRepository.delete(queueInfo);
 
         return ResponseEntity.ok().build();
     }
