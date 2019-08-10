@@ -38,15 +38,15 @@ public class QueueDetailDomainService {
 
     public Long consume(Long id) {
         List<QueueDetail> detail = get(id);
-        Long max =0L;
+        Long min =0L;
         QueueDetail info = null;
         for(int i=0;i<detail.size();i++){
 
-            if(detail.get(i).getId()>max) {
-                max = detail.get(i).getId();
+            if(detail.get(i).getId()<min) {
+                min = detail.get(i).getId();
                 info = detail.get(i);
             }
         }
-        return max;
+        return min;
     }
 }
