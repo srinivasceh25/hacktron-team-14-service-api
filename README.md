@@ -1,1 +1,0 @@
-# hacktron-team-14-service-api
