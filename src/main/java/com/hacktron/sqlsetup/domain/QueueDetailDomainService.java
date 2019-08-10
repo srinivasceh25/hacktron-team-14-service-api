@@ -27,10 +27,26 @@ public class QueueDetailDomainService {
     }
 
     public boolean delete(Long id) {
-        return queueDetailRepository.delete(id);
+
+        Long idReq= consume(id);
+        return queueDetailRepository.delete(idReq);
     }
 
     public boolean deleteAll(Long id) {
         return queueDetailRepository.deleteAll(id);
+    }
+
+    public Long consume(Long id) {
+        List<QueueDetail> detail = get(id);
+        Long max =0L;
+        QueueDetail info = null;
+        for(int i=0;i<detail.size();i++){
+
+            if(detail.get(i).getId()>max) {
+                max = detail.get(i).getId();
+                info = detail.get(i);
+            }
+        }
+        return max;
     }
 }

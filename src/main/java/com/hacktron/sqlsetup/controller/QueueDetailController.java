@@ -19,7 +19,7 @@ public class QueueDetailController {
     @Autowired
     QueueDetailDomainService queueDetailDomainService;
 
-    @GetMapping(path = "/get")
+    @GetMapping(path = "/get/{id}")
     public List<QueueDetail> get(@PathVariable("id") Long id) {
         return queueDetailDomainService.get(id);
     }

@@ -17,6 +17,8 @@ public class QueueDetail implements Serializable {
     private static final long serialVersionUID=102;
 
     @Id
+    @SequenceGenerator(name = "detail", initialValue = 1, sequenceName = "detail_seq")
+    @GeneratedValue(generator = "detail")
     private Long id;
 
     @Column
@@ -36,7 +38,7 @@ public class QueueDetail implements Serializable {
     }
 
     public void setId(Long id) {
-        this.id = Long.valueOf(2);
+        this.id = id;
     }
 
     public String getMessage() {
