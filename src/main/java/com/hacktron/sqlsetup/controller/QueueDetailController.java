@@ -33,7 +33,7 @@ public class QueueDetailController {
         return queueDetailDomainService.delete(id);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete-all/{id}")
     public boolean deleteAll(@PathVariable("id") Long queueId) {
         return queueDetailDomainService.delete(queueId);
     }
