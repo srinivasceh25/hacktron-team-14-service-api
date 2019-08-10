@@ -1,6 +1,7 @@
 package com.hacktron.sqlsetup;
 
 import com.hacktron.sqlsetup.controller.QueueController;
+import com.hacktron.sqlsetup.domain.QueueDetailDomainService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,14 @@ public class QueueApplicationTests {
 		QueueController qCont =  mock(QueueController.class);
 		when(qCont.createQueue(null)).thenReturn(null);
 		assertEquals(qCont.getQueueById(null),null);
+	}
+
+
+	@Test
+	public void testService(){
+		QueueDetailDomainService qCont =  mock(QueueDetailDomainService.class);
+		when(qCont.delete(null)).thenReturn(null);
+		assertEquals(qCont.get(null),null);
 	}
 
 
