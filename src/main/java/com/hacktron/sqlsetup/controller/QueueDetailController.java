@@ -13,7 +13,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/detail")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class QueueDetailController {
 
     @Autowired
