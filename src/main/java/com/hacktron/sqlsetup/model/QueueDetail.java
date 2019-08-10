@@ -13,8 +13,7 @@ public class QueueDetail implements Serializable {
     private static final long serialVersionUID=102;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "detail_seq")
-    @SequenceGenerator(name = "detail_seq", initialValue = 1, sequenceName = "DETAIL_SEQ")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
