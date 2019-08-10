@@ -23,9 +23,9 @@ public class QueueDetailController {
         return queueDetailDomainService.get(id);
 
     }
-}
 
-    /*@PostMapping("/add")
+
+    @PostMapping("/add")
     public boolean add(@RequestBody QueueDetail queueDetail) {
         return queueDetailDomainService.add(queueDetail);
     }
@@ -35,8 +35,6 @@ public class QueueDetailController {
         return queueDetailDomainService.delete(id);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public boolean deleteAll(@PathVariable("id") Long queueId) {
-        return queueDetailDomainService.delete(queueId);
-    }*/
 
+
+}

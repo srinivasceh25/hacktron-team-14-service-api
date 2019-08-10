@@ -1,5 +1,7 @@
 package com.hacktron.sqlsetup.controller;
-
+/**
+ * @author Siva.G
+ */
 import com.hacktron.sqlsetup.exception.ResourceNotFoundException;
 import com.hacktron.sqlsetup.model.Queue;
 import com.hacktron.sqlsetup.repository.QueueRepository;
@@ -34,7 +36,7 @@ public class QueueController {
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
     }
 
-    @PutMapping("/notes/{id}")
+    @PutMapping("/queues/{id}")
     public Queue updateNote(@PathVariable(value = "id") Long noteId,
                             @Valid @RequestBody Queue noteDetails) {
 
@@ -48,7 +50,7 @@ public class QueueController {
         return updatedNote;
     }
 
-    @DeleteMapping("/notes/{id}")
+    @DeleteMapping("/queues/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long queueId) {
         Queue queueInfo = queueRepository.findById(queueId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
