@@ -11,7 +11,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "notes")
+@Table(name = "queuemetadata")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)
