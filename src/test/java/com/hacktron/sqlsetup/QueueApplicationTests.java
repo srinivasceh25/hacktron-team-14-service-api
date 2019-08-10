@@ -1,6 +1,5 @@
 package com.hacktron.sqlsetup;
 
-import com.hacktron.sqlsetup.controller.IndexController;
 import com.hacktron.sqlsetup.controller.QueueController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,20 +20,10 @@ public class QueueApplicationTests {
 
 
 	@Test
-	public void testIndexController()
-	{
-		IndexController test = mock(IndexController.class);
-		when(test.sayHello()).thenReturn("hello");
-		// use mock in test....
-		assertEquals(test.sayHello(),"hello");
-	}
-
-
-	@Test
 	public void testGetQueues(){
 		QueueController qCont =  mock(QueueController.class);
-		when(qCont.createNote(null)).thenReturn(null);
-		assertEquals(qCont.getNoteById(null),null);
+		when(qCont.createQueue(null)).thenReturn(null);
+		assertEquals(qCont.getQueueById(null),null);
 	}
 
 

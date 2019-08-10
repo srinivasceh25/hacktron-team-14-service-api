@@ -4,6 +4,7 @@ package com.hacktron.sqlsetup.controller;
  */
 import com.hacktron.sqlsetup.exception.ResourceNotFoundException;
 import com.hacktron.sqlsetup.model.Queue;
+import com.hacktron.sqlsetup.repository.QueueDetailRepository;
 import com.hacktron.sqlsetup.repository.QueueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,26 +20,29 @@ import java.util.List;
 public class QueueController {
 
     @Autowired
+    QueueDetailRepository queueDetailRepository;
+
+    @Autowired
     QueueRepository queueRepository;
 
     @GetMapping("/queues")
-    public List<Queue> getAllNotes() {
+    public List<Queue> getAllQueues() {
         return queueRepository.findAll();
     }
 
     @PostMapping("/queues")
-    public Queue createNote(@Valid @RequestBody Queue note) {
+    public Queue createQueue(@Valid @RequestBody Queue note) {
         return queueRepository.save(note);
     }
 
     @GetMapping("/queues/{id}")
-    public Queue getNoteById(@PathVariable(value = "id") Long queueId) {
+    public Queue getQueueById(@PathVariable(value = "id") Long queueId) {
         return queueRepository.findById(queueId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
     }
 
     @PutMapping("/queues/{id}")
-    public Queue updateNote(@PathVariable(value = "id") Long noteId,
+    public Queue updateQueue(@PathVariable(value = "id") Long noteId,
                             @Valid @RequestBody Queue noteDetails) {
 
         Queue queueInfo = queueRepository.findById(noteId)
@@ -52,12 +56,12 @@ public class QueueController {
     }
 
     @DeleteMapping("/queues/{id}")
-    public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long queueId) {
+    public ResponseEntity<?> deleteQueue(@PathVariable(value = "id") Long queueId) {
         Queue queueInfo = queueRepository.findById(queueId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", queueId));
 
         queueRepository.delete(queueInfo);
-
+        queueDetailRepository.deleteAll(queueInfo.getId());
         return ResponseEntity.ok().build();
     }
 }
