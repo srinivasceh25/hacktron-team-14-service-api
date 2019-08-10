@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface NoteRepository extends JpaRepository<Queue, Long> {
+public interface QueueRepository extends JpaRepository<Queue, Long> {
 
 }

@@ -2,7 +2,7 @@ package com.hacktron.sqlsetup.controller;
 
 import com.hacktron.sqlsetup.exception.ResourceNotFoundException;
 import com.hacktron.sqlsetup.model.Queue;
-import com.hacktron.sqlsetup.repository.NoteRepository;
+import com.hacktron.sqlsetup.repository.QueueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,21 +16,21 @@ import java.util.List;
 public class QueueController {
 
     @Autowired
-    NoteRepository noteRepository;
+    QueueRepository queueRepository;
 
     @GetMapping("/notes")
     public List<Queue> getAllNotes() {
-        return noteRepository.findAll();
+        return queueRepository.findAll();
     }
 
     @PostMapping("/notes")
     public Queue createNote(@Valid @RequestBody Queue note) {
-        return noteRepository.save(note);
+        return queueRepository.save(note);
     }
 
     @GetMapping("/notes/{id}")
     public Queue getNoteById(@PathVariable(value = "id") Long noteId) {
-        return noteRepository.findById(noteId)
+        return queueRepository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", noteId));
     }
 
@@ -38,22 +38,22 @@ public class QueueController {
     public Queue updateNote(@PathVariable(value = "id") Long noteId,
                             @Valid @RequestBody Queue noteDetails) {
 
-        Queue note = noteRepository.findById(noteId)
+        Queue note = queueRepository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", noteId));
 
         note.setTitle(noteDetails.getTitle());
         note.setContent(noteDetails.getContent());
 
-        Queue updatedNote = noteRepository.save(note);
+        Queue updatedNote = queueRepository.save(note);
         return updatedNote;
     }
 
     @DeleteMapping("/notes/{id}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "id") Long noteId) {
-        Queue note = noteRepository.findById(noteId)
+        Queue note = queueRepository.findById(noteId)
                 .orElseThrow(() -> new ResourceNotFoundException("Queue", "id", noteId));
 
-        noteRepository.delete(note);
+        queueRepository.delete(note);
 
         return ResponseEntity.ok().build();
     }
