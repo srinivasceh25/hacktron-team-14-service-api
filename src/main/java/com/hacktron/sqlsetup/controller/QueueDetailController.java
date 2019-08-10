@@ -21,11 +21,9 @@ public class QueueDetailController {
     @GetMapping(path = "/get")
     public List<QueueDetail> get(@PathVariable("id") Long id) {
         return queueDetailDomainService.get(id);
-
     }
-}
 
-    /*@PostMapping("/add")
+    @PostMapping("/add")
     public boolean add(@RequestBody QueueDetail queueDetail) {
         return queueDetailDomainService.add(queueDetail);
     }
@@ -38,5 +36,7 @@ public class QueueDetailController {
     @DeleteMapping("/delete/{id}")
     public boolean deleteAll(@PathVariable("id") Long queueId) {
         return queueDetailDomainService.delete(queueId);
-    }*/
+    }
+}
+
 

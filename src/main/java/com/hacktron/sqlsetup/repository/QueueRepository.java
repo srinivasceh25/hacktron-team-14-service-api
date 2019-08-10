@@ -9,3 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface QueueRepository extends JpaRepository<Queue, Long> {
 
 }
+
+

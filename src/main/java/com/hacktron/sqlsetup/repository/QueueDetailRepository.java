@@ -2,7 +2,6 @@ package com.hacktron.sqlsetup.repository;
 
 import com.hacktron.sqlsetup.model.QueueDetail;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -14,9 +13,10 @@ import java.util.List;
 @Repository("queueDetailRepository")
 public class QueueDetailRepository {
 
-    final String DEL_QUERY = "delete from QueueDetail where id=:id";
+    final String DEL_QUERY = "delete from QueueDetail queueDetail where id=:id; // (from queueDetail.queueId=:id";
     final String GET_QUERY = "from QueueDetail queueDetail where queueDetail.queueId=:id";
     final String DEL_ALL_QUERY = "delete from QueueDetail where queueId=:id";
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -30,7 +30,8 @@ public class QueueDetailRepository {
     }
 
     public boolean delete(Long id) {
-        entityManager.createQuery(DEL_QUERY).setParameter("id",id).executeUpdate();
+        List<QueueDetail> message = get(id);
+        entityManager.remove(message.get(0));
         return true;
     }
 
